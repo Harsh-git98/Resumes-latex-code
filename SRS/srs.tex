@@ -1,1 +1,396 @@
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{graphicx}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\hypersetup{
+    bookmarks=false,    % show bookmarks bar?
+    pdftitle={Software Requirement Specification},    % title
+    pdfauthor={Jean-Philippe Eisenbarth},                     % author
+    pdfsubject={TeX and LaTeX},                        % subject of the document
+    pdfkeywords={TeX, LaTeX, graphics, images}, % list of keywords
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,       % color of internal links
+    citecolor=black,       % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}%
+\def\myversion{1.0 }
+\date{}
+%\title{%
 
+%}
+\usepackage{hyperref}
+\begin{document}
+
+\begin{flushright}
+    \rule{16cm}{5pt}\vskip1cm
+    \begin{bfseries}
+        \Huge{SOFTWARE REQUIREMENTS\\ SPECIFICATION}\\
+        \vspace{1.5cm}
+        for\\
+        \vspace{1.5cm}
+        Academic section of \\IIEST ,Shibpur \\
+        \vspace{1.5cm}
+        \LARGE{Version \myversion}\\
+        \vspace{1.5cm}
+        Prepared by : Harsh Ranjan(2022ITB056)\\
+         \\
+        \vspace{1.5cm}
+  
+        \today\\
+    \end{bfseries}
+\end{flushright}
+
+\tableofcontents
+
+\chapter{Introduction}
+
+\section{Purpose of the System}
+There are around 5k students in IIEST, shibpur and around 400+ faculty members. This is very much difficult to maintain all the data of a course as a hard copy. The purpose of this Academic Management System is to provide a unified digital platform that addresses the complexities of academic management. It ensures the seamless operation of tasks related to student enrollment, course scheduling, examination management, faculty workload, and communication through notices, while also offering robust reporting features for data-driven decision-making.
+
+ 
+
+\section{Intended Audience and Reading Suggestions}
+This SRS is for developers, project managers, users and testers. Further the discussion will provide all the internal, external, functional and also non-functional informations about "IIEST ADMIN Management System".
+
+\section{Scope of the System}
+IIEST Admin Management System provides a platform for seamless management of all academic activities.
+
+\subsection{Student Management}
+\begin{itemize}
+    \item Allows students to enroll in the institution with personal and academic details.
+    \item Enables students to update their personal information.
+    \item Provides students with a complete record of their academic performance.
+\end{itemize}
+
+\subsection{Course Management}
+\begin{itemize}
+    \item Students can register for their courses accordingly.
+    \item Facilitates scheduling of each subject and their classes.
+    \item Allows syllabus updates by the admin.
+\end{itemize}
+
+\subsection{Examination Management}
+\begin{itemize}
+    \item Creates the schedule of exams.
+    \item Manages the seating arrangement of students.
+    \item Assigns answer scripts to faculties and publishes results.
+    \item Generates reports for students.
+\end{itemize}
+
+\subsection{Faculty Management}
+\begin{itemize}
+    \item Faculty can maintain their profiles.
+    \item Tracks their assigned tasks and administrative responsibilities.
+    \item Facilitates grade submission to the admin.
+\end{itemize}
+
+\subsection{Noticeboard}
+\begin{itemize}
+    \item Provides online publication of all academic notices, results, etc.
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=30cm]{simple.drawio.png}
+    \caption{Entire work-flow}
+    \label{fig:IICT WEBSITE}
+\end{figure}
+
+\newline
+So, every entity is vary much interactive with each other. as shown in simple workflow Fig 1.1 .
+
+
+\section{Definitions,acronyms,and abbreviations}
+Acronyms and Abbrevations
+IAMS : IIEST Admin Management System.\\
+SRS: Software Requirements Specification
+
+
+
+\section{References}
+Appendix A: CGPA calculation\\
+
+
+\section{Overview}
+This document outlines the system's purpose, scope, and requirements for managing various educational processes efficiently. It covers functionalities like student, course, examination, faculty management, and a centralized noticeboard system. It specifies the intended audience, operating environment, and design constraints while addressing both functional and non-functional requirements. The system aims to streamline academic administration by providing an integrated solution for all stakeholders, ensuring smooth operations and enhanced user experience.
+
+
+
+\chapter{Overall Description}
+
+\section{Product Perspective}
+IAMS is aimed toward educational institutions requiring efficient management of academic and administrative operations. The system is designed to cater to a wide range of users, including students, faculty, and administrative staff, ensuring user-friendly interactions, reliability, and ease of learning for all stakeholders.
+
+IAMS is intended to be a stand-alone product and should not depend on the availability of other software. It is designed to be compatible with multiple platforms, including UNIX and Windows-based operating systems, providing flexibility and accessibility for diverse environments.
+
+ 
+
+\section{User Classes and Characteristics}
+"IAMS" has basically 3 types of users. 
+\begin{itemize}
+  \item Admin
+    \begin{itemize}
+        \item general Admin
+        \item exam Admin
+    \end{itemize}
+  \item Students
+  \item Faculties
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm]{USERS.drawio.png}
+    \caption{type of users}
+    \label{fig:type of users}
+\end{figure}
+ Admin are official staffs who are controlling the stuffs and we seperate exam admin and general admin for enhance safety. students and facultiesa have thier own access.
+
+\section{Product Functions}
+
+The following table summarizes the key functions of the software:
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|p{4cm}|p{9cm}|}
+        \hline
+        \textbf{Function} & \textbf{Description} \\
+        \hline
+        Installation & Creates and initializes the software environment, including database setup and configuration of required dependencies. \\
+        \hline
+        Authorization & Provides secure login and signup functionalities for the IAMS system. Users can log in to access their profiles or register as new users. \\
+        \hline
+        Student Profile Management & Allows creation, updating, and deletion of student profiles. Includes fields such as name, ID, contact details, and course enrollment. \\
+        \hline
+        Faculty Profile Management & Enables creation, updating, and deletion of faculty profiles. Includes fields like name, employee ID, department, and specialization. \\
+        \hline
+        Course Profile Management & Facilitates the creation, updating, and deletion of course profiles. Includes details such as course ID, name, syllabus, credit hours, and prerequisites. \\
+        \hline
+        Course Assignment & Manages the assignment of coursework to students. Allows students to opt for courses and select preferred faculty members. \\
+        \hline
+        Exam Management & Provides functionality to create and update exam schedules, including exam dates, times, venues, and student allocation. \\
+        \hline
+        Answer Script Assignment & Assigns answer scripts to teachers for evaluation. Ensures tracking of scripts and collection of results. \\
+        \hline
+        Result Publication & Publishes exam results on the notice board. Includes features for notification and secure access by students. \\
+        \hline
+    \end{tabular}
+    \caption{Summary of Product Functions}
+    \label{tab:product_functions}
+\end{table}
+
+
+\section{Operating Environment}
+The IAMS will operate on multiple operating systems, including MacOS, Windows, and Linux. The system requires users to have a basic understanding of login procedures and familiarity with college administration workflows. Modern web browsers and internet connectivity are prerequisites for accessing the system.
+
+\section{Design and Implementation Constraints}
+
+\textbf{Cross-Platform Compatibility:} The system must support various operating systems (MacOS, Windows, Linux) without performance degradation.\\
+\textbf{User Authentication:} Secure authorization mechanisms (e.g., password hashing, OTP verification) must be implemented.\\
+\textbf{Scalability:} The system should handle a large number of concurrent users during peak usage, such as exam schedules and result publications.\\
+\textbf{Data Security:} Sensitive data, including student and faculty information, must be encrypted and securely stored.\\
+\textbf{System Dependencies:} Requires a robust database system (e.g., MySQL or MongoDB) and reliable backend infrastructure using Node.js or equivalent.\\
+\textbf{User Accessibility:} The interface must be intuitive and responsive across devices, including desktops, tablets, and smartphones.
+
+\section{Assumptions and Dependencies}
+\textbf{Assumptions:}
+    - Users will have access to stable internet connectivity.
+    - College administration will provide necessary details such as course information, faculty assignments, and exam schedules.
+    - Users possess basic computer literacy and familiarity with academic workflows.\\
+
+\textbf{Dependencies:}
+    - The software relies on third-party frameworks and libraries for frontend (e.g., React) and backend (e.g., Node.js).
+    - External APIs may be utilized for OTP services and notifications.
+    - The system is dependent on database servers for managing profiles, course data, and exam schedules.
+    - Scheduled backups and maintenance are required to ensure data integrity and system availability.
+
+
+\chapter{Specific Requirements}
+IAMS is a software that effeciently manages the the overall college management work. Here, We discuss functional and non-functional requirements of IAMS.
+\section{Functional Requirements}
+We describe the functional requirements through various use cases. The features are prioritized from top to bottom.
+
+\begin{enumerate}
+    \item \textbf{Use Case 1: Authentication}
+    \begin{itemize}
+        \item \textbf{Primary Actor:} Admin, Faculty, Student
+        \item \textbf{Precondition:} Valid ID and password exist in the system.
+        \item \textbf{Main Scenario:}
+        \begin{enumerate}
+            \item The user navigates to the login page.
+            \item Enters their ID and password.
+            \item The system validates the credentials.
+            \item Upon successful validation, the user is redirected to their dashboard.
+        \end{enumerate}
+        \item \textbf{Alternate Scenario:}
+        \begin{enumerate}
+            \item If the credentials are invalid, the system displays an error message.
+            \item The user is given the option to reset their password or return to the login page.
+            \item If the user does not have an account, they are redirected to the signup page.
+        \end{enumerate}
+    \end{itemize}
+
+    \item \textbf{Use Case 2: Course Registration}
+    \begin{itemize}
+        \item \textbf{Primary Actor:} Student
+        \item \textbf{Precondition:} The student is logged in, and the course registration window is open.
+        \item \textbf{Main Scenario:}
+        \begin{enumerate}
+            \item The student navigates to the course registration page.
+            \item Selects the desired courses from the available list.
+            \item Submits the selection for admin approval.
+            \item The admin reviews and confirms the registration.
+        \end{enumerate}
+        \item \textbf{Alternate Scenario:}
+        \begin{enumerate}
+            \item If a selected course is full, the system notifies the student and provides a waitlist option.
+            \item If the registration deadline has passed, the system denies access and informs the student.
+        \end{enumerate}
+    \end{itemize}
+
+    \item \textbf{Use Case 3: Profile Management}
+    \begin{itemize}
+        \item \textbf{Primary Actor:} Admin, Faculty, Student
+        \item \textbf{Precondition:} The user is logged in.
+        \item \textbf{Main Scenario:}
+        \begin{enumerate}
+            \item The user accesses the profile management section.
+            \item Updates profile fields such as name, contact details, or course assignments.
+            \item Submits the changes.
+            \item The system saves the updated profile.
+        \end{enumerate}
+        \item \textbf{Alternate Scenario:}
+        \begin{enumerate}
+            \item If mandatory fields are missing or incorrect, the system highlights the errors and prevents submission.
+            \item The user can cancel changes to revert to the previous profile state.
+        \end{enumerate}
+    \end{itemize}
+
+    \item \textbf{Use Case 4: Exam Management}
+    \begin{itemize}
+        \item \textbf{Primary Actor:} Admin(EXAM)
+        \item \textbf{Precondition:} Admin has access to exam details.
+        \item \textbf{Main Scenario:}
+        \begin{enumerate}
+            \item The admin creates a new exam schedule.
+            \item Assigns venues and examiners to the schedule.
+            \item Publishes the schedule, notifying students and faculty.
+        \end{enumerate}
+        \item \textbf{Alternate Scenario:}
+        \begin{enumerate}
+            \item If a venue or examiner is unavailable, the system prompts the admin to select alternatives.
+            \item The admin can save the draft and complete scheduling later.
+        \end{enumerate}
+    \end{itemize}
+
+    \item \textbf{Use Case 5: Result Publication}
+    \begin{itemize}
+        \item \textbf{Primary Actor:} Admin, Student
+        \item \textbf{Precondition:} Exams have been evaluated, and results are ready for publishing.
+        \item \textbf{Main Scenario:}
+        \begin{enumerate}
+            \item The admin uploads final exam results.
+            \item The system publishes results on the notice board.
+            \item Students securely access their individual results using their credentials.
+        \end{enumerate}
+        \item \textbf{Alternate Scenario:}
+        \begin{enumerate}
+            \item If results are incomplete, the system prevents publication and notifies the admin of the missing data.
+            \item Students can request a re-evaluation if they find discrepancies in their scores.
+        \end{enumerate}
+    \end{itemize}
+
+    \item \textbf{Use Case 6: Answer Script Assignment}
+    \begin{itemize}
+        \item \textbf{Primary Actor:} Admin, Faculty
+        \item \textbf{Precondition:} Answer scripts are ready for evaluation.
+        \item \textbf{Main Scenario:}
+        \begin{enumerate}
+            \item The admin assigns answer scripts to faculty members.
+            \item Faculty members evaluate the scripts and submit results.
+            \item The admin verifies and compiles the results.
+        \end{enumerate}
+        \item \textbf{Alternate Scenario:}
+        \begin{enumerate}
+            \item If a faculty member is unable to complete the evaluation, the admin reassigns the scripts to another faculty member.
+            \item The system tracks progress and reminds faculty of upcoming deadlines.
+        \end{enumerate}
+    \end{itemize}
+
+    \item \textbf{Use Case 7: }
+\end{enumerate}
+
+\section{Non-Functional Requirements}
+
+The non-functional requirements for the system are as follows:
+
+\begin{enumerate}
+    \item \textbf{Performance}
+    \begin{itemize}
+        \item The system must support at least 500 concurrent users during peak times, such as exam result publications.
+        \item Response times should not exceed 2 seconds for 95\% of user interactions.
+    \end{itemize}
+
+    \item \textbf{Security}
+    \begin{itemize}
+        \item All sensitive data must be encrypted at rest and in transit.
+        \item Multi-factor authentication (MFA) must be implemented for admin-level users.
+        \item Role-based access control (RBAC) must be used to restrict unauthorized access.
+    \end{itemize}
+
+    \item \textbf{Usability}
+    \begin{itemize}
+        \item The interface must be intuitive and user-friendly, with clear navigation for all user roles.
+        \item The system must be fully responsive and accessible on desktops, tablets, and smartphones.
+    \end{itemize}
+
+    \item \textbf{Scalability}
+    \begin{itemize}
+        \item The architecture must accommodate future growth, scaling to handle 5,000+ users and additional features.
+    \end{itemize}
+
+    \item \textbf{Availability}
+    \begin{itemize}
+        \item The system must ensure 99.9\% uptime, with scheduled maintenance occurring during off-peak hours.
+    \end{itemize}
+
+    \item \textbf{Compatibility}
+    \begin{itemize}
+        \item The software must run seamlessly on major browsers (Chrome, Firefox, Safari, Edge) and operating systems (Windows, MacOS, Linux).
+    \end{itemize}
+
+    \item \textbf{Maintainability}
+    \begin{itemize}
+        \item The code must follow clean coding standards and be modular for ease of updates and debugging.
+    \end{itemize}
+
+    \item \textbf{Data Backup}
+    \begin{itemize}
+        \item Automated daily backups must be implemented with a retention period of 30 days.
+    \end{itemize}
+
+    \item \textbf{Compliance}
+    \begin{itemize}
+        \item The system must comply with applicable data protection laws, such as General Data Protection Regulation (GDPR).
+    \end{itemize}
+
+    \item \textbf{Error Handling}
+    \begin{itemize}
+        \item The system must provide meaningful error messages and log all errors for review by administrators.
+    \end{itemize}
+\end{enumerate}
+
+
+\section{Other Requirements}
+"IAMS" needs maintenance as it is a long process software. It will need re-factoring and further the requirements can be changed as the need is changing frequently. 
+
+\chapter{Appendix}
+\section{APPENDIX A: CGPA Calculation}
+CGPA refers to the cumulative grade point average which translates to the total of all your credit points. This system helps in assessing the overall academic performance of a student. Although the evaluation criteria may vary from one country to another, the CGPA system is among the most common evaluation way.SGPA, which stands for Semester Grade Point Average is an evaluation method that highlights the semester-wise performance of the student. It can be calculated by simply adding all the credit points awarded for the subjects and then dividing it by the total credits allotted to that semester.Thus, by adding up all the SGPAs you have got in an academic year by the total number of semesters, you will find CGPA from SGPA.
+
+
+\end{document}
